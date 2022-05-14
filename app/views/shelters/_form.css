@@ -1,0 +1,7 @@
+.shelter_form {
+  .form-inputs {
+    .shelter_about .input {
+      @apply min-h-24;
+    }
+  }
+}

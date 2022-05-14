@@ -1,0 +1,17 @@
+<div
+  class="<%= component_class_names("relative") %>"
+  data-controller="loading-overlay-component"
+  <%= tag.attributes @component_attributes %>
+>
+  <%= content %>
+  <div
+    class="<%= class_names(
+      component_class_name("overlay"),
+      "absolute inset-0 bg-white/75 flex flex-col items-center justify-center transition-opacity in:opacity-100 out:opacity-0 out:pointer-events-none off:hidden",
+      "on in done": loading,
+    ) %>"
+    data-loading-overlay-component-target="overlay"
+  >
+    <%= render LoaderComponent.new(class: component_class_name("loader")) %>
+  </div>
+</div>

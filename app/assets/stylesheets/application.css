@@ -1,0 +1,51 @@
+/* == Tailwind == */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* == Libraries == */
+@import "./dropzone.css";
+@import "./mapbox.css";
+@import "./perfect_scrollbar.css";
+@import "./rack_mini_profiler.css";
+@import "./simple_form.css";
+@import "./uppy.css";
+
+/* == Components == */
+@import-glob "../../components/**/*.css";
+
+/* == Views == */
+@import-glob "../../views/**/*.css";
+
+/* == Base == */
+@layer base {
+  /* Focus rings: */
+  button {
+    @apply focus-visible:outline-none focus-visible:ring;
+  }
+  input {
+    @apply focus-visible:outline-none focus-visible:ring;
+  }
+
+  /* Form inputs: */
+  input[type="file"] {
+    @apply form-input pl-2;
+  }
+
+  /* XtendUI links: */
+  .xt-links-default,
+  .xt-links-inverse .xt-links-default {
+    a:not([class]),
+    a[class=""],
+    .xt-link {
+      @apply hover:opacity-80;
+    }
+  }
+}
+
+/* == Utilities == */
+@layer utilities {
+  .danger {
+    @apply text-red-50 bg-red-600;
+  }
+}

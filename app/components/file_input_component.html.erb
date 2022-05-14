@@ -1,0 +1,52 @@
+<div
+  class="<%= component_class_names(
+    "relative w-36 h-36 outline-2 outline-dashed outline-gray-500 rounded-md bg-gray-700 overflow-hidden",
+    "empty": !blob?
+  ) %>"
+  data-controller="file-input-component"
+  data-action="file-input-component:loaded->loading#stop"
+  data-direct-upload-url="<%= rails_direct_uploads_path %>"
+>
+  <%= @form.hidden_field(@method, value: signed_id, **@options) %>
+  <div
+    class="<%= class_names(
+      component_class_name("preview"),
+      "h-full w-full flex items-center justify-center",
+    ) %>"
+  >
+    <img
+      class="h-full w-full object-cover"
+      data-file-input-component-target="preview"
+      <%= tag.attributes(src: url_for(preview)) if previewable? %>
+    />
+    <% if blob? && !previewable? %>
+      <div class="flex flex-col items-center gap-1">
+        <%= heroicon "document", class: "text-gray-500" %>
+        <p class="xt-p text-center text-xs text-gray-400 line-clamp-3">
+          <%= filename %>
+        </p>
+      </div>
+    <% end %>
+  </div>
+  <div
+    class="<%= class_names(
+      component_class_name("overlay"),
+      "absolute inset-0 flex items-center justify-center gap-1.5 bg-gray-600/80 transition-opacity duration-200",
+    ) %>"
+  >
+    <button
+      class="<%= class_names(component_class_name("trigger"), "upload") %>"
+      type="button"
+      data-file-input-component-target="uploadTrigger"
+    >
+      <%= heroicon "upload", class: "text-primary-400" %>
+    </button>
+    <button
+      class="<%= class_names(component_class_name("trigger"), "remove") %>"
+      type="button"
+      data-file-input-component-target="removeTrigger"
+    >
+      <%= heroicon "trash", class: "text-red-400" %>
+    </button>
+  </div>
+</div>

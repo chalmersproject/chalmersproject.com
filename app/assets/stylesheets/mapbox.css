@@ -1,0 +1,9 @@
+.mapboxgl-ctrl-geocoder {
+  .mapboxgl-ctrl-geocoder--input {
+    @apply rounded-[4px] focus-visible:ring;
+
+    &:focus {
+      outline: none;
+    }
+  }
+}

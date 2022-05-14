@@ -1,0 +1,21 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "optparse"
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: bin/fmt [--check]"
+  opts.on(
+    "--check",
+    "Check for unformatted files without correcting them",
+  ) { |check| options[:check] = check }
+end.parse!
+
+targets = ARGV.empty? ? ["."] : ARGV
+mode = options[:check] ? "--check" : "--write"
+
+puts "== Prettier =="
+system("yarn", "prettier", mode, *targets)

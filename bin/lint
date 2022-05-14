@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+
+# frozen_string_literal: true
+
+require "optparse"
+
+options = {}
+
+OptionParser.new do |opts|
+  opts.banner = "Usage: bin/lint [--check]"
+  opts.on(
+    "--check",
+    "Check for code offences without correcting them",
+  ) { |check| options[:check] = check }
+end.parse!
+
+def scoped(&block)
+  yield
+end
+
+scoped do
+  args = ARGV.dup
+  args.unshift("--auto-correct") unless options[:check]
+  puts "== Rubocop =="
+  system("bundle", "exec", "rubocop", "--force-exclusion", *args)
+end
+
+scoped do
+  puts "\n== ESLint =="
+  args = %w[--ext .js,.ts]
+  args << "--fix" unless options[:check]
+  targets = ARGV.empty? ? ["."] : ARGV.dup
+  system(
+    "yarn",
+    "eslint",
+    "--quiet",
+    "--report-unused-disable-directives",
+    *args,
+    *targets,
+  )
+end

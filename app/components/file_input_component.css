@@ -1,0 +1,26 @@
+.file_input_component {
+  .file_input_component-trigger {
+    @apply xt-button p-1.5 rounded-full bg-gray-800 !cursor-pointer;
+  }
+
+  .file_input_component-preview {
+    img:not([src]) {
+      @apply hidden;
+    }
+  }
+
+  &.empty {
+    .file_input_component-overlay {
+      @apply opacity-100;
+    }
+    .file_input_component-trigger.remove {
+      @apply hidden;
+    }
+  }
+
+  &:not(.empty) {
+    .file_input_component-overlay {
+      @apply opacity-0 hover:opacity-100;
+    }
+  }
+}

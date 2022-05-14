@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html class="dark">
+  <head>
+    <title>Chalmers Project</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+
+    <!-- Security meta tags -->
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <!-- Application meta tags -->
+    <meta name="env" content="<%= Rails.env %>">
+
+    <!-- Icons -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+    <!-- Application stylesheets -->
+    <%= stylesheet_link_tag "inter" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+
+    <!-- Third-party stylesheets -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.css">
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css">
+
+    <!-- Application scripts -->
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "xtendui", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "mailtoui", "data-turbo-track": "reload", defer: true %>
+    <%= hotwire_livereload_tag %>
+
+    <!-- Third-party scripts -->
+    <%# TODO: Can we load Mapbox asynchronously? %>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.8.2/mapbox-gl.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+  </head>
+
+  <body class="xt-body xt-optout-scroll xt-links-default min-h-screen dark:bg-gray-900 dark:text-gray-100">
+    <!-- Application scaffold -->
+    <header class="px-3 py-1.5 flex justify-center border-b border-gray-200 dark:border-gray-700">
+      <a
+        class="font-bold text-base text-black dark:text-gray-50 transition-opacity hover:opacity-75 tracking-widest no-underline"
+        href="/"
+      >
+        CHALMERS PROJECT
+      </a>
+    </header>
+    <main class="container mx-auto max-w-xl p-3">
+      <%= yield %>
+    </main>
+    <% if notice.present? %>
+      <div class="notice fixed inset-x-0 bottom-0 font-medium text-primary-100 bg-primary-600 py-1 px-3">
+        <p>
+          <%= notice %>
+        </p>
+      </div>
+    <% end %>
+
+    <!-- Warn about unsupported browsers -->
+    <script>
+      var $buoop = {
+        required: { e:79, f:67, o:50, s:11.1, c:63 },
+        api: 2021.03
+      };
+      function $buo_f() {
+        var e = document.createElement("script");
+        e.src = "//browser-update.org/update.min.js";
+        e.async = true;
+        e.defer = true;
+        document.body.appendChild(e);
+      };
+      try {
+        document.addEventListener("DOMContentLoaded", $buo_f, false);
+      } catch(e) {
+        window.attachEvent("onload", $buo_f);
+      }
+    </script>
+
+    <!-- Initialize Mapbox -->
+    <script>
+      mapboxgl.accessToken = "<%= ENV.fetch("MAPBOX_ACCESS_TOKEN") %>";
+    </script>
+  </body>
+</html>

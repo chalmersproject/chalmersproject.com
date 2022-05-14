@@ -1,0 +1,20 @@
+<div id="shelters" class="flex flex-col gap-2">
+  <h1>Shelters</h1>
+  <div class="flex flex-col gap-4">
+    <% @shelters.each do |shelter| %>
+      <div class="flex flex-col gap-1.5">
+        <%= render ShelterComponent.new(shelter: shelter) %>
+        <%= link_to shelter, class: "no-underline" do %>
+          <button class="xt-button py-1 px-2 w-full bg-gray-700 text-gray-200 text-sm">
+            Show this shelter
+          </button>
+        <% end %>
+      </div>
+    <% end %>
+    <%= link_to new_shelter_path, class: "no-underline" do %>
+      <button class="xt-button xt-links-inverse font-bold text-lg">
+        New shelter
+      </button>
+    <% end %>
+  </div>
+</div>

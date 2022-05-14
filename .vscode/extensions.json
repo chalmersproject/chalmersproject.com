@@ -1,0 +1,14 @@
+{
+  "recommendations": [
+    "shopify.rubocop-lsp",
+    "formulahendry.auto-close-tag",
+    "rebornix.ruby",
+    "wingrunr21.vscode-ruby",
+    "sorbet.sorbet-vscode-extension",
+    "vortizhe.simple-ruby-erb",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "editorconfig.editorconfig",
+    "benspaulding.procfile"
+  ]
+}

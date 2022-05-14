@@ -1,0 +1,78 @@
+diff --git a/node_modules/xtendui/src/global.css.js b/node_modules/xtendui/src/global.css.js
+index 8bb2e80..b1d401e 100644
+--- a/node_modules/xtendui/src/global.css.js
++++ b/node_modules/xtendui/src/global.css.js
+@@ -33,7 +33,7 @@ module.exports = {
+   }),
+   component: theme => ({
+     '.xt-body:not(.xt-optout-scroll)': {
+-      '@apply xt-overflow-main overflow-y-scroll overflow-x-hidden': '',
++      '@apply overflow-y-scroll overflow-x-hidden': '',
+     },
+     html: {
+       touchAction: 'manipulation', // disable double-tap
+@@ -48,35 +48,6 @@ module.exports = {
+       backgroundColor: '#00FFDD',
+       color: theme('colors.black'),
+     },
+-    '.xt-overflow-main': {
+-      '-webkit-overflow-scrolling': 'touch',
+-      '&::-webkit-scrollbar': {
+-        height: '10px',
+-        width: '10px',
+-        background: theme('colors.white'),
+-        '@media (hover: none)': {
+-          display: 'none',
+-        },
+-      },
+-      '&::-webkit-scrollbar-thumb': {
+-        background: theme('colors.gray.300'),
+-      },
+-      scrollbarWidth: 'auto',
+-      scrollbarColor: `${theme('colors.gray.300')} ${theme('colors.white')}`,
+-    },
+-    '.xt-overflow-sub': {
+-      '-webkit-overflow-scrolling': 'touch',
+-      '&::-webkit-scrollbar': {
+-        height: '5px',
+-        width: '5px',
+-        background: 'transparent',
+-      },
+-      '&::-webkit-scrollbar-thumb': {
+-        background: theme('colors.gray.300'),
+-      },
+-      scrollbarWidth: 'thin',
+-      scrollbarColor: `${theme('colors.gray.300')} transparent`,
+-    },
+     '[readonly], [disabled], .xt-disabled': {
+       pointerEvents: 'none',
+       '&:not(.on)': {
+diff --git a/node_modules/xtendui/src/overlay.css.js b/node_modules/xtendui/src/overlay.css.js
+index 7afecd3..b3dcb7b 100644
+--- a/node_modules/xtendui/src/overlay.css.js
++++ b/node_modules/xtendui/src/overlay.css.js
+@@ -13,7 +13,6 @@ module.exports = {
+   }),
+   component: theme => ({
+     '.xt-overlay': {
+-      '@apply xt-overflow-main': '',
+       position: 'fixed',
+       zIndex: theme('zIndex.overlay'),
+       top: '0',
+@@ -47,16 +46,9 @@ module.exports = {
+       width: '100%',
+     },
+     '.xt-scrollbar-overlay': {
+-      paddingRight: 'var(--scrollbar-width) !important',
+       overflow: 'hidden !important',
+       '.xt-overlay': {
+         overflowY: 'scroll',
+-        '.fixed': {
+-          marginRight: 'var(--scrollbar-width)',
+-        },
+-      },
+-      '.xt-backdrop': {
+-        right: 'var(--scrollbar-width)',
+       },
+     },
+   }),

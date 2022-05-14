@@ -1,0 +1,30 @@
+.simple_form {
+  @apply flex flex-col gap-4;
+
+  .error {
+    @apply xt-p mt-0.5 mb-0 text-sm text-red-500;
+  }
+
+  .error-notification {
+    @apply bg-red-600 text-red-50 rounded-md py-1.5 px-3;
+  }
+
+  .form-inputs {
+    @apply flex flex-col gap-2;
+    .input-wrapper {
+      @apply flex flex-col gap-0.5;
+      .label {
+        @apply font-medium text-gray-300;
+        abbr[title="required"] {
+          @apply text-red-600;
+        }
+      }
+      .input {
+        @apply rounded-md bg-gray-800;
+      }
+      .hint {
+        @apply xt-p text-xs text-gray-400 mt-0.5 mb-0;
+      }
+    }
+  }
+}

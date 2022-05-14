@@ -1,0 +1,25 @@
+<%= simple_form_for(@shelter, html: { class: "shelter_form" }) do |f| %>
+  <%# TODO: Extract into a component? %>
+  <% if f.error_notification %>
+    <div class="form-notice">
+      <%= f.error_notification %>
+      <% f.object.errors.full_messages_for(:base).presence.try do |errors| %>
+        <p class="error">
+          <%= errors.to_sentence %>
+        </p>
+      <% end %>
+    </div>
+  <% end %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :about %>
+    <%= f.input :image %>
+    <%= f.input :address %>
+    <%= f.input :location, hint: "Click on the map to set a pin representing the location of the shelter." %>
+    <%= f.input :contact_email %>
+    <%= f.input :contact_phone %>
+  </div>
+  <div class="form-actions">
+    <%= f.button :submit, class: "xt-button" %>
+  </div>
+<% end %>

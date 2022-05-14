@@ -1,0 +1,18 @@
+<div
+  class="<%= component_class_names(
+    "h-80 bg-gray-800 border border-gray-500 rounded-md overflow-hidden",
+  ) %>"
+  data-controller="location-input-component loading"
+  data-action="location-input-component:loaded->loading#stop"
+>
+  <%= @form.hidden_field(@method, **@options) %>
+  <%= render LoadingOverlayComponent.new(
+    class: "h-full w-full",
+    "data-loading-target": "loader",
+  ) do %>
+    <div
+      class="<%= component_class_name("map") %>% h-full w-full"
+      data-location-input-component-target="map"
+    ></div>
+  <% end %>
+</div>
